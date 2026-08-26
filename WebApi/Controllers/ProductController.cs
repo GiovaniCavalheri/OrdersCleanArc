@@ -43,5 +43,50 @@ namespace WebApi.Controllers
                 return NotFound(new { message = "Produto com o ID específicado, não existe." }); 
             }
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProductPrice([FromRoute]Guid id, [FromBody] UpdateProductPriceDTO productDTO)
+        {
+            try
+            {
+                var updatedProduct = await _productService.UpdateProductPriceAsync(id, productDTO.NewPrice);
+                return Ok(updatedProduct); 
+            }
+            catch (KeyNotFoundException)
+            {
+
+                return NotFound(new { message = "Produto com o ID específicado, não encontrado." });
+            }
+        }
+
+        [HttpPut("{id}/stock")]
+        public async Task<IActionResult> UpdateProductStock([FromRoute]Guid id, [FromBody] UpdateProductStockDTO productDTO)
+        {
+            try
+            {
+                var updatedStockProduct = await _productService.UpdateProductStockAsync(id, productDTO.Stock);
+                return Ok(updatedStockProduct); 
+            }
+            catch (KeyNotFoundException)
+            {
+
+                return NotFound(new { message = "Produto com o ID específicado, não encontrado." });
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct([FromRoute]Guid id)
+        {
+            try
+            {
+                await _productService.DeleteProductAsync(id);
+                return StatusCode(204); 
+            }
+            catch (KeyNotFoundException)
+            {
+
+                return NotFound(new { message = "Produto com o ID específicado, não encontrado." });
+            }
+        }
     }
 }
