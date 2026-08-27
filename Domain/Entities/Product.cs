@@ -34,7 +34,7 @@
 
         public void UpdateStock(int newQuantity)
         {
-            if (newQuantity < 0)
+            if (newQuantity <= 0)
                 throw new ArgumentException("--Criar Throw Exception---");
 
             QuantityStock = newQuantity;
