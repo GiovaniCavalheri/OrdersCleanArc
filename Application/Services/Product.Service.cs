@@ -21,6 +21,7 @@ namespace Application.Services
 
             return new ProductResponseDTO
             {
+                Id = product.Id,
                 ProductName = product.ProductName,
                 ProductPrice = product.ProductPrice,
                 QuantityStock = product.QuantityStock
