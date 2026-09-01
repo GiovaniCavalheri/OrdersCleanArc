@@ -4,6 +4,7 @@ using Application.Services;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
+using WebApi.Middlewares;
 
 namespace WebApi;
 
@@ -28,6 +29,7 @@ public class Program
         {
             app.MapOpenApi();
             app.MapScalarApiReference();
+            app.ConfigureExceptionHandler();
         }
 
         app.UseHttpsRedirection();

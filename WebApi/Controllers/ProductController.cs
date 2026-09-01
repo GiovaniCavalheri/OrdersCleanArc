@@ -37,7 +37,7 @@ namespace WebApi.Controllers
                 var product = await _productService.GetProductByIdAsync(id);
                 return Ok(product); 
             }
-            catch (KeyNotFoundException) // = Alterar a excessão
+            catch (KeyNotFoundException) 
             {
 
                 return NotFound(new { message = "Produto com o ID específicado, não existe." }); 
